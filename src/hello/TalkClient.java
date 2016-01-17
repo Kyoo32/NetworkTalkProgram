@@ -67,17 +67,17 @@ public class TalkClient {
 	          instr.append( (char) c);
 	        System.out.println("log3");
 	        System.out.println(instr);
-	        
-	        String userInput;
-	        while(true){
-	        System.out.println("log4");
-	        BufferedReader brUser = new BufferedReader(new InputStreamReader(System.in)); //Here you declare your BufferedReader object and instance it.
-	        userInput = brUser.readLine();
-	        userInput = userInput + (char)13;
-	        System.out.println(userInput);
-	        osw.write(userInput);
-	        	if(userInput.length() <1) break;
-	        } 
+//	        
+//	        String userInput;
+//	        while(true){
+//		        System.out.println("log4");
+//		        BufferedReader brUser = new BufferedReader(new InputStreamReader(System.in)); //Here you declare your BufferedReader object and instance it.
+//		        userInput = brUser.readLine();
+//		        userInput = userInput + (char)13;
+//		        System.out.println(userInput);
+//		        osw.write(userInput);
+//		        	if(userInput== "\n"+"13") break;
+//		    } 
 	        /** Close the socket connection. */
 	        connection.close();
 	        

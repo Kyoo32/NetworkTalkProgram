@@ -81,18 +81,28 @@ public class TalkServer implements Runnable {
 		    
 		      
 		      
-		      
-		      int character2;
-		      StringBuffer userInput = new StringBuffer();
-		      System.out.println("log4");
-		      is.read();
-		     
-		      while((character2 = isr.read()) != 13) {
-		        userInput.append((char)character2);
-		      }
-		      System.out.println(userInput);
-		      
-		      System.out.println("log5");
+//		      try {
+//			        Thread.sleep(1000);
+//			      } catch (Exception e){} 
+//		      int character2;
+//		      StringBuffer userInput = new StringBuffer();
+//		      System.out.println("log4");
+//		      for(;;){
+//		    	  System.out.println("lla");
+//			      is.reset();
+//			      is.mark(32);
+//		    	  
+//			      while((character2 = is.read())!=-1){
+//			    	  while((character2 = isr.read()) != 13 && character2 != -1) {
+//				    	  System.out.println("sw");
+//				        userInput.append((char)character2);
+//				        if(character2 == -1) break;
+//				      }
+//				      if(character2 == -1) break;
+//				      System.out.println(userInput);
+//			      };
+//		      }
+//		      System.out.println("log5");
 		      
 		    }
 		    catch (Exception e) {
