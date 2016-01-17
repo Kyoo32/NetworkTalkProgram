@@ -3,6 +3,7 @@
 import java.net.*;
 /* The java.io package contains the basics needed for IO operations. */
 import java.io.*;
+
 /** The SocketClient class is a simple example of a TCP/IP Socket Client.
  *
  */
@@ -10,13 +11,19 @@ import java.io.*;
 public class TalkClient {
 
 	 public static void main(String[] args) {
+		 
+		 
+		if( (args.length < 0) || (args.length > 1) ) //Test for correct # of args
+				throw new IllegalArgumentException("Parameter(s): <NickName> ");
+		
 	    /** Define a host server */
 	    String host = "localhost";
 	    /** Define a port */
-	    int port = 19999;
+	    int port = 1234;
 
 	    StringBuffer instr = new StringBuffer();
 	    String TimeStamp;
+	    String nickName = args[0];
 	    System.out.println("SocketClient initialized");
 
 	    try {
@@ -24,6 +31,7 @@ public class TalkClient {
 	        InetAddress address = InetAddress.getByName(host);
 	        /** Establish a socket connection */
 	        Socket connection = new Socket(address, port);
+	        System.out.println("log1");
 	        /** Instantiate a BufferedOutputStream object */
 	        BufferedOutputStream bos = new BufferedOutputStream(connection.getOutputStream());
 	
@@ -33,9 +41,9 @@ public class TalkClient {
 	        OutputStreamWriter osw = new OutputStreamWriter(bos, "US-ASCII");
 	        
 	        TimeStamp = new java.util.Date().toString();
-	        String process = "Calling the Socket Server on "+ host + " port " + port +
-	            " at " + TimeStamp +  (char) 13;
+	       String process = nickName + " Calling the Socket Server on "+ host + " port " + port +   " at " + TimeStamp +  (char) 13;
 
+	       System.out.println("log2");
 	        /** Write across the socket connection and flush the buffer */
 	        osw.write(process);
 	        osw.flush();
@@ -57,16 +65,27 @@ public class TalkClient {
 	        int c;
 	        while ( (c = isr.read()) != 13)
 	          instr.append( (char) c);
-
+	        System.out.println("log3");
+	        System.out.println(instr);
+	        
+	        String userInput;
+	        while(true){
+	        System.out.println("log4");
+	        BufferedReader brUser = new BufferedReader(new InputStreamReader(System.in)); //Here you declare your BufferedReader object and instance it.
+	        userInput = brUser.readLine();
+	        userInput = userInput + (char)13;
+	        System.out.println(userInput);
+	        osw.write(userInput);
+	        	if(userInput.length() <1) break;
+	        } 
 	        /** Close the socket connection. */
 	        connection.close();
-	        System.out.println(instr);
-	       }
-	      catch (IOException f) {
+	        
+	        
+	    } catch (IOException f) {
 	        System.out.println("IOException: " + f);
-	      }
-	      catch (Exception g) {
+	    } catch (Exception g) {
 	        System.out.println("Exception: " + g);
-	      }
 	    }
+	   }
 }
